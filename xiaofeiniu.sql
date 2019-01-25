@@ -9,9 +9,16 @@ USE xiaofeiniu;
 CREATE TABLE xfn_admin(
   aid int primary key auto_increment,
   aname varchar(32) not null,
-  apwd varchar(64) not null,                    # 需要md5加密
-  role int not null                          # 0,1,2
+  apwd varchar(64) not null                    # 需要md5加密
+  -- role int not null                          # 0,1,2
 );
+
+
+
+insert into xfn_admin values
+(null,'admin','123456'),
+(null,'boss','999999');
+
 
 #项目全局设置表。
 CREATE TABLE xfn_settings(
