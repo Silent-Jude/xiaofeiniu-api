@@ -16,8 +16,8 @@ CREATE TABLE xfn_admin(
 
 
 insert into xfn_admin values
-(null,'admin','123456'),
-(null,'boss','999999');
+(null,'admin',PASSWORD('123456')),
+(null,'boss',PASSWORD('999999'));
 
 
 #项目全局设置表。
