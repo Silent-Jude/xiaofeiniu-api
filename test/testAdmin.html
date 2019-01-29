@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="axios.min.js"></script>
+  <title>测试api页面</title>
+</head>
+
+<body>
+  <button id="bt1">管理员登录测试</button>
+  <button id="bt2">管理员修改密码测试</button>
+
+  <script>
+    bt1.onclick = function () {
+      var aname = 'admin'
+      var apwd = 123456
+      var url = 'http://127.0.0.1:8090/admin/login/' + aname + '/' + apwd
+      axios.get(url).then(res => {
+        console.log('发送登录请求成功')
+        console.log(res.data)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+
+    bt2.onclick = function () {
+      var data = {
+        aname: 'admin',
+        oldPwd: '666666',
+        newPwd: '666666'
+      }
+      var url = "http://127.0.0.1:8090/admin"
+      axios.patch(url, data).then(res => {
+        console.log('改密操作执行成功！')
+        console.log(res.data)
+      }).catch(err => {
+        console.log('出现错误！' + err)
+      })
+    }
+  </script>
+</body>
+
+</html>

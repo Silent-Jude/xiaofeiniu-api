@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="axios.min.js"></script>
+  <title>测试api页面</title>
+</head>
+
+<body>
+  <button id="bt1">获取所有菜品类别</button>
+  <button id="bt2">删除菜品类别</button>
+  <button id="bt3">添加新的菜品类别</button>
+  <button id="bt4">修改菜品类别</button>
+  <script>
+    bt1.onclick = function () {
+      var url = 'http://127.0.0.1:8090/admin/category'
+      axios.get(url).then(res => {
+        console.log('获取菜品类别成功！')
+        console.log(res.data)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+    bt2.onclick = function () {
+      //put和delete请求之前，浏览器会先提交一个预取请求——preflight request
+      var cid = 5
+      //这里没法删，因为开启了外键引用。
+      var url = "http://127.0.0.1:8090/admin/category/" + cid
+      axios.delete(url).then(res => {
+        console.log('删除菜品类别成功')
+        console.log(res.data)
+      }).catch(err => {
+        console.log('出现错误！' + err)
+      })
+    }
+
+    bt3.onclick = function () {
+      var data = {
+        cname: '恐龙类'
+      }
+      var url = "http://127.0.0.1:8090/admin/category/"
+      axios.post(url, data).then(res => {
+        console.log('添加菜品类别成功')
+        console.log(res.data)
+      }).catch(err => {
+        console.log('出现错误！' + err)
+      })
+    }
+
+
+    bt4.onclick = function () {
+      var data = {
+        cname: '史前无敌类',
+        cid: 6
+      }
+      var url = "http://127.0.0.1:8090/admin/category/"
+      axios.put(url, data).then(res => {
+        console.log('修改请求发送成功！')
+        console.log(res.data)
+      }).catch(err => {
+        console.log('出现错误！' + err)
+      })
+    }
+  </script>
+</body>
+
+</html>
